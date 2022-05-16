@@ -19,6 +19,7 @@ function Nweet(props) {
 	const onSubmit = async (event) => {
 		event.preventDefault();
 		await updateDoc(doc(db, "nweets", `${nweetObj.id}`), { text: newNweet });
+		alert("느윗이 수정되었습니다.");
 		setEditing(false);
 	};
 	const onChange = (event) => {

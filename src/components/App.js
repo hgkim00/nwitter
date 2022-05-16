@@ -30,7 +30,7 @@ function App() {
 			) : (
 				"Initializing..."
 			)}
-			<footer>&copy; Copyright Nwitter {new Date().getFullYear()}</footer>
+			{/* <footer>&copy; Copyright Nwitter {new Date().getFullYear()}</footer> */}
 		</>
 	);
 }
