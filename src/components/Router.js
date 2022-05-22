@@ -6,15 +6,19 @@ import Profile from "../routes/Profile";
 import Navigation from "./Navigation";
 
 function AppRouter(props) {
-	const { isLoggedIn, userObj } = props;
+	const { refreshUser, isLoggedIn, userObj } = props;
 
 	return (
 		<Router>
-			{isLoggedIn ? <Navigation /> : null}
+			{isLoggedIn ? <Navigation userObj={userObj} /> : null}
 			<Routes>
 				{isLoggedIn ? (
 					<>
-						<Route exact={true} path="/profile" element={<Profile />} />
+						<Route
+							exact={true}
+							path="/profile"
+							element={<Profile refreshUser={refreshUser} userObj={userObj} />}
+						/>
 						<Route exact={true} path="/" element={<Home userObj={userObj} />} />
 					</>
 				) : (

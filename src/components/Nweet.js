@@ -16,7 +16,9 @@ function Nweet(props) {
 			// database의 기록 삭제
 			await deleteDoc(doc(db, "nweets", `${nweetObj.id}`));
 			// storage의 사진파일 삭제
-			await deleteObject(ref(storage, nweetObj.attachmentURL));
+			if (nweetObj.attachmentURL !== "") {
+				await deleteObject(ref(storage, nweetObj.attachmentURL));
+			}
 			alert("느윗이 삭제되었습니다.");
 		}
 	};
