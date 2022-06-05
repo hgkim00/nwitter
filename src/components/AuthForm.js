@@ -4,6 +4,7 @@ import {
 	signInWithEmailAndPassword,
 } from "firebase/auth";
 import React, { useState } from "react";
+import styles from "./AuthForm.module.css";
 
 function AuthForm() {
 	const [email, setEmail] = useState("");
@@ -43,7 +44,7 @@ function AuthForm() {
 
 	return (
 		<>
-			<form onSubmit={onSubmit}>
+			<form onSubmit={onSubmit} className={styles.container}>
 				<input
 					name="email"
 					type="email"
@@ -51,6 +52,7 @@ function AuthForm() {
 					required
 					value={email}
 					onChange={onChange} // onChange는 필수
+					className={styles.input}
 				/>
 				<input
 					name="password"
@@ -58,18 +60,17 @@ function AuthForm() {
 					placeholder="Password"
 					value={password}
 					onChange={onChange}
+					className={styles.input}
 					required
 				/>
-				<input type="submit" value={newAccount ? "Create Account" : "Login"} />
-				<span
-					style={{
-						color: "red",
-					}}
-				>
-					{error}
-				</span>
+				<input
+					type="submit"
+					value={newAccount ? "Create Account" : "Login"}
+					className={styles.submit}
+				/>
+				{error && <span className={styles.error}>{error}</span>}
 			</form>
-			<span onClick={toggleAccount}>
+			<span onClick={toggleAccount} className={styles.switch}>
 				{newAccount ? "Login" : "Create Account"}
 			</span>
 		</>

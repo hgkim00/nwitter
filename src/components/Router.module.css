@@ -1,0 +1,15 @@
+.container {
+	max-width: 890;
+	width: 100%;
+	margin: 0 auto;
+	margin-top: 80;
+	display: flex;
+	justify-content: center;
+}
+/* 
+flex는 레이아웃 배치 전용 기능으로 고안됨.
+부모 요소 div.container를 flex container라고 부르고, 자식 요소 div.item을 flex item이라고 부름.
+display: flex;
+Flex 아이템들은 가로 방향으로 배치되고, 자신이 가진 내용물의 width 만큼만 차지하게 되지요. 마치 inline 요소들 처럼요. height는 컨테이너의 높이만큼 늘어납니다.
+justify-content는 메인축 방향 정렬.
+*/

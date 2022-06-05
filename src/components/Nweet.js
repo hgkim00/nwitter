@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { doc, deleteDoc, getFirestore, updateDoc } from "firebase/firestore";
 import { deleteObject, getStorage, ref } from "firebase/storage";
+import styles from "./Nweet.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 
 function Nweet(props) {
 	const { nweetObj, isOwner } = props;
@@ -36,37 +39,49 @@ function Nweet(props) {
 	};
 
 	return (
-		<div>
+		<div className={styles.nweet}>
 			{editing ? (
 				<>
-					<form onSubmit={onSubmit}>
+					<form
+						onSubmit={onSubmit}
+						className={`${styles.nweetEdit} ${styles.container}`}
+					>
 						<input
+							className={styles.formInput}
 							type="text"
 							placeholder="Edit your nweet"
 							value={newNweet}
 							required
 							onChange={onChange}
 						/>
-						<input type="submit" value="수정"></input>
+						<input
+							type="submit"
+							value="수정"
+							className={styles.formBtn}
+						></input>
 					</form>
-					<button onClick={toggleEditing}>Cancel</button>
+					<button
+						onClick={toggleEditing}
+						className={`${styles.formBtn} ${styles.cancelBtn}`}
+					>
+						Cancel
+					</button>
 				</>
 			) : (
 				<>
 					<h4>{nweetObj.text}</h4>
 					{nweetObj.attachmentURL && (
-						<img
-							src={nweetObj.attachmentURL}
-							width="50px"
-							height="50px"
-							alt=""
-						/>
+						<img src={nweetObj.attachmentURL} alt="" />
 					)}
 					{isOwner ? (
-						<>
-							<button onClick={onDeleteClick}>Delete</button>
-							<button onClick={toggleEditing}>Edit</button>
-						</>
+						<div className={styles.nweetActions}>
+							<button onClick={onDeleteClick}>
+								<FontAwesomeIcon icon={faTrash} />
+							</button>
+							<button onClick={toggleEditing}>
+								<FontAwesomeIcon icon={faPencilAlt} />
+							</button>
+						</div>
 					) : null}
 				</>
 			)}

@@ -6,6 +6,13 @@ import {
 	signInWithPopup,
 } from "firebase/auth";
 import AuthForm from "components/AuthForm";
+import styles from "./Auth.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+	faTwitter,
+	faGoogle,
+	faGithub,
+} from "@fortawesome/free-brands-svg-icons";
 
 function Auth() {
 	const onSocialClick = async (event) => {
@@ -22,14 +29,20 @@ function Auth() {
 	};
 
 	return (
-		<div>
+		<div className={styles.container}>
+			<FontAwesomeIcon
+				icon={faTwitter}
+				color={"#04AAFF"}
+				size="3x"
+				style={{ marginBottom: 30 }}
+			/>
 			<AuthForm />
-			<div>
-				<button onClick={onSocialClick} name="google">
-					Continue with Google
+			<div className={styles.btns}>
+				<button onClick={onSocialClick} name="google" className={styles.btn}>
+					Continue with Google <FontAwesomeIcon icon={faGoogle} />
 				</button>
-				<button onClick={onSocialClick} name="github">
-					Continue with GitHub
+				<button onClick={onSocialClick} name="github" className={styles.btn}>
+					Continue with GitHub <FontAwesomeIcon icon={faGithub} />
 				</button>
 			</div>
 		</div>

@@ -8,6 +8,7 @@ import {
 	getDocs,
 	getFirestore,
 } from "firebase/firestore";
+import styles from "./Profile.module.css";
 
 function Profile(props) {
 	const { refreshUser, userObj } = props;
@@ -54,18 +55,26 @@ function Profile(props) {
 	};
 
 	return (
-		<>
-			<form onSubmit={onSubmit}>
+		<div className="container">
+			<form onSubmit={onSubmit} classname={styles.profileForm}>
 				<input
+					className={styles.formInput}
 					onChange={onChange}
 					type="text"
 					value={newDisplayName}
 					placeholder="Display Name"
 				/>
-				<input type="submit" value="Update Display Name" />
+				<input
+					type="submit"
+					value="Update Profile"
+					className={styles.updateBtn}
+					style={{ marginTop: 10 }}
+				/>
 			</form>
-			<button onClick={onLogoutClick}>Logout</button>
-		</>
+			<span onClick={onLogoutClick} className={styles.logout}>
+				Logout
+			</span>
+		</div>
 	);
 }
 

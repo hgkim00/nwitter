@@ -1,8 +1,6 @@
 import Nweet from "components/Nweet";
 import NweetFactory from "components/NweetFactory";
 import {
-	addDoc,
-	getDocs,
 	collection,
 	getFirestore,
 	query,
@@ -10,6 +8,7 @@ import {
 	onSnapshot,
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
+import styles from "./Home.module.css";
 
 function Home(props) {
 	const { userObj } = props;
@@ -40,10 +39,10 @@ function Home(props) {
 	}, []);
 
 	return (
-		<div>
+		<div className={styles.container}>
 			<NweetFactory userObj={userObj} />
 
-			<div>
+			<div style={{ marginTop: 30 }}>
 				{nweets.map((nweet) => (
 					<Nweet
 						key={nweet.id}

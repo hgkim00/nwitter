@@ -43,7 +43,7 @@ function App() {
 	};
 
 	return (
-		<>
+		<div>
 			{init ? (
 				<AppRouter
 					refreshUser={refreshUser}
@@ -54,7 +54,7 @@ function App() {
 				"Initializing..."
 			)}
 			{/* <footer>&copy; Copyright Nwitter {new Date().getFullYear()}</footer> */}
-		</>
+		</div>
 	);
 }
 

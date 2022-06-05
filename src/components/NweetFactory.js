@@ -7,6 +7,9 @@ import {
 } from "firebase/storage";
 import React, { useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import styles from "./NweetFactory.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 function NweetFactory(props) {
 	const { userObj } = props;
@@ -65,24 +68,44 @@ function NweetFactory(props) {
 
 	return (
 		<form onSubmit={onSubmit}>
+			<div className={styles.container}>
+				<input
+					className={styles.factoryInput_input}
+					value={nweet}
+					onChange={onChange}
+					type="text"
+					placeholder="What's on your mind?"
+					maxLength={120}
+				/>
+				<input
+					type="submit"
+					value="&rarr;"
+					className={styles.factoryInput_arrow}
+				/>
+			</div>
+			<label htmlFor="attach-file">
+				<span>Add photos</span>
+				<FontAwesomeIcon icon={faPlus} />
+			</label>
 			<input
-				value={nweet}
-				onChange={onChange}
-				type="text"
-				placeholder="What's on your mind?"
-				maxLength={120}
-			/>
-			<input
+				id="attach-file"
 				type="file"
 				accept="image/*"
 				onChange={onFileChange}
 				ref={fileInput}
+				style={{ opacity: 0 }}
 			></input>
-			<input type="submit" value="Nweet" />
 			{attachment ? (
-				<div>
-					<img src={attachment} width="50px" height="50px" alt="" />
-					<button onClick={onClearAttachment}>Clear</button>
+				<div className={styles.attachment}>
+					<img
+						src={attachment}
+						style={{ backgroundImage: attachment }}
+						alt=""
+					/>
+					<div onClick={onClearAttachment} className={styles.clear}>
+						<span>Remove</span>
+						<FontAwesomeIcon icon={faTimes} />
+					</div>
 				</div>
 			) : null}
 		</form>
